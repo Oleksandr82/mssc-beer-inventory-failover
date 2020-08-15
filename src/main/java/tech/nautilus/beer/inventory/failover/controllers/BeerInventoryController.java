@@ -25,8 +25,8 @@ import static tech.nautilus.beer.inventory.failover.ApiConstants.QUANTITY_ON_HAN
 public class BeerInventoryController {
 
     @GetMapping(GET_BEER_INVENTORY)
-    List<BeerInventoryDto> listBeersById(@PathVariable UUID beerId){
-        log.debug("Failover Inventory Response for beerId:" + beerId);
+    List<BeerInventoryDto> listBeersById(){
+        log.debug("Failover Inventory Response");
 
         return List.of(BeerInventoryDto.builder()
                 .id(UUID.randomUUID())
