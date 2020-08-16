@@ -1,5 +1,6 @@
 package tech.nautilus.beer.inventory.failover.handlers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -15,12 +16,15 @@ import java.util.UUID;
 
 import static tech.nautilus.beer.inventory.failover.ApiConstants.QUANTITY_ON_HAND;
 
+@Slf4j
 @Component
 @ConditionalOnProperty(name = "controller.reactive.enabled", havingValue = "true")
 public class InventoryHandler implements HandlerFunction<ServerResponse> {
 
     @Override
     public Mono<ServerResponse> handle(ServerRequest request) {
+
+        log.debug("Failover Inventory Response");
 
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_STREAM_JSON)
